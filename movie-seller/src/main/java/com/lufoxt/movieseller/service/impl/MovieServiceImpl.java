@@ -37,7 +37,7 @@ public class MovieServiceImpl implements MovieService {
     public void disableMovieFromPlatform(Long movieId) {
         Movie enabledMovie = movieRepository.findById(movieId).orElseThrow(MovieNotFoundException::new);
         enabledMovie.setActiveStatus(false);
-        Long[] customersId = restTemplate.getForEntity(
+        Long[] customersIds = restTemplate.getForEntity(
                         MOVIE_ANALYZER_URL + "/checkDelete/{movieId}",
                         Long[].class, movieId)
                 .getBody();
@@ -45,11 +45,11 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(enabledMovie);
         log.info("Disable movie for platform with id: {}", movieId);
 
-        if (customersId == null) {
+        if (customersIds == null) {
             log.info("No customer has bought movie with id: {}", movieId);
         } else {
             log.info("{} customers bought this movie, an email has been sent to customers " +
-                    "about disabling movie with id: {} from the platform", customersId.length, movieId);
+                    "about disabling movie with id: {} from the platform", customersIds.length, movieId);
         }
     }
 
