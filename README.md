@@ -3,7 +3,7 @@ Because the database is created in the first app and the second is connected
 
 ---
 
-#### Create user URL  
+#### Create user URL
 
 Post: http://localhost:8081/api/v1/customer  
 Body:
@@ -12,9 +12,10 @@ Body:
 "email": "test1@gmail.com",  
 "password": "password"  
 }
+
 ---
 
-#### Create movie URL  
+#### Create movie URL
 
 Post: http://localhost:8081/api/v1/movie  
 Body:  
@@ -26,6 +27,7 @@ Body:
 "rating": 8.5,  
 "releaseDate": "3901-01-10T22:00:00.000+00:00"  
 }
+
 ---
 
 #### Create order URL
