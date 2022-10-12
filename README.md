@@ -3,7 +3,7 @@ Because the database is created in the first app and the second is connected
 
 ---
 
-#### Create user URL
+#### Create user URL  
 
 Post: http://localhost:8081/api/v1/customer  
 Body:
@@ -14,7 +14,7 @@ Body:
 }
 ---
 
-#### Create movie URL
+#### Create movie URL  
 
 Post: http://localhost:8081/api/v1/movie  
 Body:  
