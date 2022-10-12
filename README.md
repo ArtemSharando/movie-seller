@@ -38,6 +38,7 @@ Body:
 "customerId": 1,  
 "purchasedMovie": 1  
 }
+
 ---
 
 #### Get all customers
