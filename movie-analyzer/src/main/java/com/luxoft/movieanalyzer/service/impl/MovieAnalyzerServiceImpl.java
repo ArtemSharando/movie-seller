@@ -2,17 +2,18 @@ package com.luxoft.movieanalyzer.service.impl;
 
 import com.lufoxt.movieseller.entity.Customer;
 import com.lufoxt.movieseller.entity.Movie;
-import com.lufoxt.movieseller.entity.MovieGenre;
 import com.lufoxt.movieseller.entity.dto.MovieDto;
 import com.lufoxt.movieseller.exception.MovieNotFoundException;
+import com.lufoxt.movieseller.repository.MovieRepository;
 import com.lufoxt.movieseller.util.converter.MovieConverter;
-import com.luxoft.movieanalyzer.repository.MovieAnalyzerRepository;
 import com.luxoft.movieanalyzer.service.MovieAnalyzerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MovieAnalyzerServiceImpl implements MovieAnalyzerService {
 
-    private final MovieAnalyzerRepository movieRepository;
+    private final MovieRepository movieRepository;
 
     @Override
     public List<MovieDto> findAllMoviesByReleaseDate() {

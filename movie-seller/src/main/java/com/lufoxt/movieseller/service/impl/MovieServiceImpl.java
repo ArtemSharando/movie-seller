@@ -35,7 +35,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void disableMovieFromPlatform(Long movieId) {
-        Movie enabledMovie = movieRepository.findById(movieId).orElseThrow(MovieNotFoundException::new);
+        Movie enabledMovie = movieRepository.findByIdAndActiveStatusTrue(movieId).orElseThrow(MovieNotFoundException::new);
         enabledMovie.setActiveStatus(false);
         Long[] customersIds = restTemplate.getForEntity(
                         MOVIE_ANALYZER_URL + "/checkDelete/{movieId}",
@@ -45,7 +45,7 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.save(enabledMovie);
         log.info("Disable movie for platform with id: {}", movieId);
 
-        if (customersIds == null) {
+        if (customersIds.length == 0) {
             log.info("No customer has bought movie with id: {}", movieId);
         } else {
             log.info("{} customers bought this movie, an email has been sent to customers " +
@@ -55,7 +55,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void activeMovieForPlatform(Long movieId) {
-        Movie disabledMovie = movieRepository.findById(movieId).orElseThrow(MovieNotFoundException::new);
+        Movie disabledMovie = movieRepository.findByIdAndActiveStatusFalse(movieId).orElseThrow(MovieNotFoundException::new);
         disabledMovie.setActiveStatus(true);
         movieRepository.save(disabledMovie);
 
