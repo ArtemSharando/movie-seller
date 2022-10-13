@@ -6,7 +6,7 @@ Because the database is created in the first app and the second is connected
 #### Create user URL
 
 Post: http://localhost:8081/api/v1/customer  
-Body:
+Body:  
 {  
 "username": "username1",  
 "email": "test1@gmail.com",  
